@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Student } from '../../students/models/students.model';
 import * as StudentsActions from '../../students/actions/students.actions';
@@ -7,12 +7,14 @@ export const studentsFeatureKey = 'students';
 
 export interface State extends EntityState<Student> {
   // additional entities state properties
+  selectedStudentId: string | null;
 }
 
 export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  selectedStudentId: null,
 });
 
 
@@ -51,9 +53,17 @@ export const reducer = createReducer(
 );
 
 
+export const getSelectedStudentId = (state: State) => state.selectedStudentId;
+
 export const {
   selectIds,
   selectEntities,
   selectAll,
   selectTotal,
 } = adapter.getSelectors();
+
+export const selectStudentIds = selectIds;
+
+export const selectAllStudents = selectAll;
+
+export const selectStudentTotal = selectTotal;
