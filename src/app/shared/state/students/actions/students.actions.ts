@@ -1,19 +1,20 @@
 import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Student } from '../models/students.model';
 
 export const loadStudents = createAction(
-  '[Students] Load Students',
-  props<{ students: Student[]}>()
+  '[Students Page] Load Students'
+  // props<{ students: Student[]}>()
 );
 
 export const loadStudentsSuccess = createAction(
-  '[Students] Load Students Success',
-  props<{ data: any }>()
+  '[Students/API] Load Students Success',
+  props<{ students: Student[]}>()
 );
 
 export const loadStudentsFailure = createAction(
-  '[Students] Load Students Failure',
+  '[Students/EFFECTS] Load Students Failure',
   props<{ error: any }>()
 );
 

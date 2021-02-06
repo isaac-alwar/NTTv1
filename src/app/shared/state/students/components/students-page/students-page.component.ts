@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../reducers/students.reducer';
+import * as fromStudentActions from '../../actions/students.actions'
+import { Observable } from 'rxjs';
+import { Student } from '../../models/students.model';
 
 @Component({
   selector: 'app-students-page',
@@ -9,9 +12,15 @@ import * as fromStore from '../../reducers/students.reducer';
 })
 export class StudentsPageComponent implements OnInit {
 
-  constructor(private store: Store) { }
+  students$: Observable<Student[]>;
 
-  ngOnInit(): void {
+  constructor(private store: Store<fromStore.State>) {
+    this.students$ = store.select(fromStore.selectAll);
+   }
+
+  ngOnInit() {
+    this.store.dispatch(fromStudentActions.loadStudents())
+    // this.loadStudents()
   }
 
 }

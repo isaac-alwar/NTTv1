@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Student } from '../../students/models/students.model';
 import * as StudentsActions from '../../students/actions/students.actions';
@@ -6,20 +6,26 @@ import * as StudentsActions from '../../students/actions/students.actions';
 export const studentsFeatureKey = 'students';
 
 export interface State extends EntityState<Student> {
-  // additional entities state properties
+  error: any;
   selectedStudentId: string | null;
 }
 
 export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
 
 export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
   selectedStudentId: null,
+  error: null
 });
 
 
-export const reducer = createReducer(
+export const studentsReducer = createReducer(
   initialState,
+  on(StudentsActions.loadStudentsSuccess, (state, {students}) =>{
+    return adapter.addMany(students, {...state, selectedStudentId: null});
+  }),
+  // on(StudentsActions.loadStudentsSuccess,
+  //   (state, action) => adapter.setAll(action.students, state)
+  // ),
   on(StudentsActions.addStudent,
     (state, action) => adapter.addOne(action.student, state)
   ),
@@ -44,14 +50,15 @@ export const reducer = createReducer(
   on(StudentsActions.deleteStudents,
     (state, action) => adapter.removeMany(action.ids, state)
   ),
-  on(StudentsActions.loadStudents,
-    (state, action) => adapter.setAll(action.students, state)
-  ),
   on(StudentsActions.clearStudents,
     state => adapter.removeAll(state)
   ),
 );
 
+
+export function reducer(state: State | undefined, action: Action) {
+  return studentsReducer(state, action);
+}
 
 export const getSelectedStudentId = (state: State) => state.selectedStudentId;
 

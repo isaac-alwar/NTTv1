@@ -28,4 +28,4 @@ export const selectStudentTotal = createSelector(
 export const currentActiveStudentId = createSelector(
   selectStudentsState,
   fromStudents.getSelectedStudentId
-)
+);
