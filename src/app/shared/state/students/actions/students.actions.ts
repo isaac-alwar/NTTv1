@@ -1,6 +1,5 @@
 import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Student } from '../models/students.model';
 
 export const loadStudents = createAction(

@@ -20,12 +20,12 @@ export const initialState: State = adapter.getInitialState({
 
 export const studentsReducer = createReducer(
   initialState,
-  on(StudentsActions.loadStudentsSuccess, (state, {students}) =>{
-    return adapter.addMany(students, {...state, selectedStudentId: null});
-  }),
-  // on(StudentsActions.loadStudentsSuccess,
-  //   (state, action) => adapter.setAll(action.students, state)
-  // ),
+  // on(StudentsActions.loadStudentsSuccess, (state, {students}) =>{
+  //   return adapter.addMany(students, {...state, selectedStudentId: null});
+  // }),
+  on(StudentsActions.loadStudentsSuccess,
+    (state, action) => adapter.setAll(action.students, state)
+  ),
   on(StudentsActions.addStudent,
     (state, action) => adapter.addOne(action.student, state)
   ),

@@ -1,5 +1,4 @@
 import {
-  ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
@@ -7,7 +6,7 @@ import {
 } from '@ngrx/store';
 import * as fromStudents from './students/reducers/students.reducer'
 import { environment } from '../../../environments/environment';
-import { currentActiveStudentId } from './students/selectors/students.selectors';
+// import { currentStudentId } from './students/selectors/students.selectors';
 
 
 export interface State {
@@ -16,7 +15,7 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
-  students: fromStudents.reducer
+  students: fromStudents.studentsReducer
 
 };
 

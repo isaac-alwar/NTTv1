@@ -4,6 +4,7 @@ import * as fromStore from '../../reducers/students.reducer';
 import * as fromStudentActions from '../../actions/students.actions'
 import { Observable } from 'rxjs';
 import { Student } from '../../models/students.model';
+import { selectAll, studentsFeatureKey } from '../../reducers/students.reducer';
 
 @Component({
   selector: 'app-students-page',
@@ -15,12 +16,16 @@ export class StudentsPageComponent implements OnInit {
   students$: Observable<Student[]>;
 
   constructor(private store: Store<fromStore.State>) {
-    this.students$ = store.select(fromStore.selectAll);
+    this.students$ = store.select(selectAll);
    }
 
   ngOnInit() {
-    this.store.dispatch(fromStudentActions.loadStudents())
+
+    this.getAll();
     // this.loadStudents()
   }
 
+  getAll() {
+   return this.store.dispatch(fromStudentActions.loadStudents())
+  }
 }

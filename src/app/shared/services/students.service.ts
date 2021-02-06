@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Student } from '../state/students/models/students.model';
 
-const BASE_URL: string = "http://localhost:8090/api";
+const BASE_URL: string = "http://localhost:8090/api/";
 const HEADER = { headers: new HttpHeaders({"Content-Type": "application/json" })}
 
 @Injectable({

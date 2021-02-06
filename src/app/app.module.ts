@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './shared/state';
 import * as fromStudent from './shared/state/students/reducers/students.reducer';
+import { StudentsEffects } from './shared/state/students/effects/students.effects';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import * as fromStudent from './shared/state/students/reducers/students.reducer'
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreModule.forFeature(fromStudent.studentsFeatureKey, fromStudent.studentsReducer),
+    // EffectsModule.forRoot([StudentsEffects]),
+    // StoreModule.forFeature(fromStudent.studentsFeatureKey, fromStudent.studentsReducer),
     EffectsModule.forRoot([])
   ],
   providers: [],

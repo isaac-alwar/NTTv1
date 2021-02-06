@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/'},
+  // {path: '', pathMatch: 'full', redirectTo: '/students'},
   {path: 'students', loadChildren: ()=> import('./shared/state/students/students.module').then(m => m.StudentsModule)}
 ];
 
