@@ -1,15 +1,66 @@
+import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
+import { Student } from '../models/students.model';
 
-export const loadStudentss = createAction(
-  '[Students] Load Studentss'
+export const loadStudents = createAction(
+  '[Students] Load Students',
+  props<{ students: Student[]}>()
 );
 
-export const loadStudentssSuccess = createAction(
-  '[Students] Load Studentss Success',
+export const loadStudentsSuccess = createAction(
+  '[Students] Load Students Success',
   props<{ data: any }>()
 );
 
-export const loadStudentssFailure = createAction(
-  '[Students] Load Studentss Failure',
+export const loadStudentsFailure = createAction(
+  '[Students] Load Students Failure',
   props<{ error: any }>()
+);
+
+
+/* ************************************ */
+
+
+export const addStudent = createAction(
+  '[Students/API] Add Students',
+  props<{ student: Student }>()
+);
+
+export const upsertStudent = createAction(
+  '[Students/API] Upsert Students',
+  props<{ student: Student }>()
+);
+
+export const addStudents = createAction(
+  '[Students/API] Add Students',
+  props<{ students: Student[] }>()
+);
+
+export const upsertStudents = createAction(
+  '[Students/API] Upsert Students',
+  props<{ students: Student[] }>()
+);
+
+export const updateStudent = createAction(
+  '[Students/API] Update Students',
+  props<{ student: Update<Student> }>()
+);
+
+export const updateStudents = createAction(
+  '[Students/API] Update Students',
+  props<{ students: Update<Student>[] }>()
+);
+
+export const deleteStudent = createAction(
+  '[Students/API] Delete Student',
+  props<{ id: string }>()
+);
+
+export const deleteStudents = createAction(
+  '[Students/API] Delete Students',
+  props<{ ids: string[] }>()
+);
+
+export const clearStudents = createAction(
+  '[Students/API] Clear Students'
 );

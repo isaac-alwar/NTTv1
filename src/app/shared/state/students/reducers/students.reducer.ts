@@ -1,23 +1,59 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as StudentsActions from '../actions/students.actions';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Student } from '../../students/models/students.model';
+import * as StudentsActions from '../../students/actions/students.actions';
 
 export const studentsFeatureKey = 'students';
 
-export interface State {
-
+export interface State extends EntityState<Student> {
+  // additional entities state properties
 }
 
-export const initialState: State = {
+export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
 
-};
+export const initialState: State = adapter.getInitialState({
+  // additional entity state properties
+});
 
 
 export const reducer = createReducer(
   initialState,
-
-  on(StudentsActions.loadStudentss, state => state),
-  on(StudentsActions.loadStudentssSuccess, (state, action) => state),
-  on(StudentsActions.loadStudentssFailure, (state, action) => state),
-
+  on(StudentsActions.addStudent,
+    (state, action) => adapter.addOne(action.student, state)
+  ),
+  on(StudentsActions.upsertStudent,
+    (state, action) => adapter.upsertOne(action.student, state)
+  ),
+  on(StudentsActions.addStudents,
+    (state, action) => adapter.addMany(action.students, state)
+  ),
+  on(StudentsActions.upsertStudents,
+    (state, action) => adapter.upsertMany(action.students, state)
+  ),
+  on(StudentsActions.updateStudent,
+    (state, action) => adapter.updateOne(action.student, state)
+  ),
+  on(StudentsActions.updateStudents,
+    (state, action) => adapter.updateMany(action.students, state)
+  ),
+  on(StudentsActions.deleteStudent,
+    (state, action) => adapter.removeOne(action.id, state)
+  ),
+  on(StudentsActions.deleteStudents,
+    (state, action) => adapter.removeMany(action.ids, state)
+  ),
+  on(StudentsActions.loadStudents,
+    (state, action) => adapter.setAll(action.students, state)
+  ),
+  on(StudentsActions.clearStudents,
+    state => adapter.removeAll(state)
+  ),
 );
 
+
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = adapter.getSelectors();

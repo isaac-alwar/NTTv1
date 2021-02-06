@@ -11,14 +11,14 @@ import * as StudentsActions from '../actions/students.actions';
 export class StudentsEffects {
 
   loadStudentss$ = createEffect(() => {
-    return this.actions$.pipe( 
+    return this.actions$.pipe(
 
-      ofType(StudentsActions.loadStudentss),
+      ofType(StudentsActions.loadStudents),
       concatMap(() =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         EMPTY.pipe(
-          map(data => StudentsActions.loadStudentssSuccess({ data })),
-          catchError(error => of(StudentsActions.loadStudentssFailure({ error }))))
+          map(data => StudentsActions.loadStudentsSuccess({ data })),
+          catchError(error => of(StudentsActions.loadStudentsFailure({ error }))))
       )
     );
   });
