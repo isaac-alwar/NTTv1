@@ -5,27 +5,33 @@ export const selectStudentsState = createFeatureSelector<fromStudents.State>(
   fromStudents.studentsFeatureKey
 );
 
-export const selectStudentIds = createSelector(
+export const xt_selectStudentIds = createSelector(
   selectStudentsState,
   fromStudents.selectIds
 );
 
-export const selectStudentEntities = createSelector(
+export const xt_selectStudentEntities = createSelector(
   selectStudentsState,
   fromStudents.selectEntities
 );
 
-export const selectAllStudents = createSelector(
+export const xt_selectAllStudents = createSelector(
   selectStudentsState,
   fromStudents.selectAll
 );
 
-export const selectStudentTotal = createSelector(
+export const xt_selectStudentTotal = createSelector(
   selectStudentsState,
   fromStudents.selectTotal
 );
 
-export const currentActiveStudentId = createSelector(
+export const xt_currentActiveStudentId = createSelector(
   selectStudentsState,
   fromStudents.getSelectedStudentId
 );
+
+// export const selectCurrentStudent = createSelector(
+//   fromStudents.selectEntities,
+//   fromStudents.getSelectedStudentId, // selectCurrentStudentId,
+//   (studentEntities, studentId) => studentEntities[studentId]
+// );

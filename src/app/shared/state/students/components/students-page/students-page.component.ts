@@ -4,7 +4,8 @@ import * as fromStore from '../../reducers/students.reducer';
 import * as fromStudentActions from '../../actions/students.actions'
 import { Observable } from 'rxjs';
 import { Student } from '../../models/students.model';
-import { selectAll, studentsFeatureKey } from '../../reducers/students.reducer';
+import { selectAll } from '../../reducers/students.reducer';
+import { xt_currentActiveStudentId, xt_selectAllStudents } from '../../selectors/students.selectors';
 
 @Component({
   selector: 'app-students-page',
@@ -16,7 +17,7 @@ export class StudentsPageComponent implements OnInit {
   students$: Observable<Student[]>;
 
   constructor(private store: Store<fromStore.State>) {
-    this.students$ = store.select(selectAll);
+    this.students$ = store.select(xt_selectAllStudents);
    }
 
   ngOnInit() {

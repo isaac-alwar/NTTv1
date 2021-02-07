@@ -6,8 +6,8 @@ import { StudentsPageComponent } from './components/students-page/students-page.
 
 
 const routes: Routes = [
-  { path: '', component: StudentsPageComponent }
-  // { path: ':id', component: StudenteditComponent }
+  { path: '', component: StudentsPageComponent },
+  { path: ':id', component: StudentsPageComponent }
 ];
 
 @NgModule({

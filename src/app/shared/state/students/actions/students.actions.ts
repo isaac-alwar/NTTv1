@@ -22,8 +22,13 @@ export const loadStudentsFailure = createAction(
 
 
 export const addStudent = createAction(
-  '[Students/API] Add Students',
+  '[Students/API] Add Student',
   props<{ student: Student }>()
+);
+
+export const addStudentFailure = createAction(
+  '[Students/API] Add Student Failure',
+  props<{error: any}>()
 );
 
 export const upsertStudent = createAction(

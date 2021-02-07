@@ -9,9 +9,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './shared/state';
-import * as fromStudent from './shared/state/students/reducers/students.reducer';
-import { StudentsEffects } from './shared/state/students/effects/students.effects';
+import { reducers } from './shared/state';
+// import * as fromStudent from './shared/state/students/reducers/students.reducer';
+// import { StudentsEffects } from './shared/state/students/effects/students.effects';
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import { StudentsEffects } from './shared/state/students/effects/students.effect
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, {  }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     // EffectsModule.forRoot([StudentsEffects]),

@@ -6,5 +6,7 @@ export interface Student {
   lastname: string;
   gender: string;
   readonly created: Date;
-  updated: Date;
+  updated?: Date;
 }
+
+export type StudentRequiredProps = Pick<Student, "firstname" | "lastname" | "gender">;

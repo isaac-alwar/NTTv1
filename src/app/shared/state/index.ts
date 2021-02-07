@@ -2,10 +2,10 @@ import {
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
-  MetaReducer
+  // MetaReducer
 } from '@ngrx/store';
 import * as fromStudents from './students/reducers/students.reducer'
-import { environment } from '../../../environments/environment';
+// import { environment } from '../../../environments/environment';
 // import { currentStudentId } from './students/selectors/students.selectors';
 
 
@@ -19,7 +19,7 @@ export const reducers: ActionReducerMap<State> = {
 
 };
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+// export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
 
 
 export const selectStudentsState = createFeatureSelector<fromStudents.State>(
@@ -51,8 +51,8 @@ export const selectCurrentStudentId = createSelector(
   fromStudents.getSelectedStudentId
 );
 
-// export const selectCurrentStudent = createSelector(
-//   fromStudents.selectEntities,
-//   fromStudents.getSelectedStudentId, // selectCurrentStudentId,
-//   (studentEntities, studentId) => studentEntities[studentId]
-// );
+export const selectCurrentStudent = createSelector(
+  fromStudents.selectEntities,
+  fromStudents.getSelectedStudentId, // selectCurrentStudentId,
+  (studentEntities, studentId) => studentEntities[studentId]
+);

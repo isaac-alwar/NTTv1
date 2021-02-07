@@ -7,13 +7,13 @@ export const studentsFeatureKey = 'students';
 
 export interface State extends EntityState<Student> {
   error: any;
-  selectedStudentId: string | null;
+  selectedStudentId: string;
 }
 
 export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
 
 export const initialState: State = adapter.getInitialState({
-  selectedStudentId: null,
+  selectedStudentId: "",
   error: null
 });
 
