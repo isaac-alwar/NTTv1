@@ -132,6 +132,7 @@
   },
   "defaultProject": "NTTv1",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@ngrx/schematics"
   }
 }
