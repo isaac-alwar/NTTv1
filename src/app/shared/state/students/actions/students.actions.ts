@@ -1,7 +1,38 @@
 import { Update } from '@ngrx/entity';
-import { createAction, props } from '@ngrx/store';
+import { createAction, createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Student } from '../models/students.model';
 
+export const StudentsPageActions = createActionGroup({
+  source: 'Students Page'
+  events: {
+    Enter: emptyProps(),
+    'Student Added': props<{ student: Student }>(),  
+  },
+})
+// Usage =>>
+// StudentsPAgeActions.enter()
+// StudentsPageActions.studentAdded({ student: { id:'001', firstName: 'isaac', lastName: 'alwar'} });
+
+export const StudentsApiActions = createActionGroup({
+  source: 'Students API',
+  events: {
+    'Students Loaded Success': props<{ students: Student[] }>(),
+    'Students Loaded Failure': props<{ error: string }>(),
+    
+    'Students Added Success': props<{ students: Student[] }>(),
+    'Students Added Failure': props<{ error: string }>(),
+    
+    'Student Added Success': props<{ student: Student }>(),
+    'Student Added Failure': props<{ error: string }>(),
+
+    'Student Deleted Success': props<{ id: string }>(),
+    'Student Deleted Failure': props<{ error: string }>(),
+    
+    'Students Deleted Success': props<{ id: string[] }>(),
+    'Students Deleted Failure': props<{ error: string }>(),
+    
+  },
+})
 
 /* LOAD ACTIONS
 /* ************************************ */
