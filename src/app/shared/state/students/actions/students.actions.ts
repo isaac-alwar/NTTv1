@@ -5,8 +5,16 @@ import { Student } from '../models/students.model';
 export const StudentsPageActions = createActionGroup({
   source: 'Students Page'
   events: {
-    Enter: emptyProps(),
-    'Student Added': props<{ student: Student }>(),  
+  // Defining an event with no payload using the 'emptyProps function'
+     Enter: emptyProps(),
+     Clear: emptyProps(),
+
+  // Defining an event with payload using  the 'props function'    
+    'Student Added': props<{ student: Student }>(), 
+    'Pagination Changed': props<{ page: number, offset: number}>(), 
+
+  // Defining an event with payload using the 'props factory'  
+    'Query Changed': (query: string) => ({ query }),  
   },
 })
 // Usage =>>
@@ -30,6 +38,12 @@ export const StudentsApiActions = createActionGroup({
     
     'Students Deleted Success': props<{ id: string[] }>(),
     'Students Deleted Failure': props<{ error: string }>(),
+
+    'Student Updated Success': props<{ student: Update<Student> }>(),
+    'Student Updated Failure': props<{ error: string }>(),
+
+    'Students Updated Success': props<{ student: Update<Student>[] }>(),
+    'Students Updated Failure': props<{ error: string }>(),
     
   },
 })
